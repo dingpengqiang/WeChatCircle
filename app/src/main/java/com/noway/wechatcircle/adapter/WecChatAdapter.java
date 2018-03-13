@@ -117,14 +117,7 @@ public class WecChatAdapter extends BaseQuickAdapter<UserList,BaseViewHolder> {
         }else {
             layout.setVisibility(View.GONE);
         }
-        final LinearLayout rootLayout = helper.getView(R.id.item_ll);
-        TextView tvComment = helper.getView(R.id.item_tv_comment);
-        tvComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
 
     }
 

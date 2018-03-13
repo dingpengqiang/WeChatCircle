@@ -189,22 +189,23 @@ public class WeChatActivity extends BaseActivity {
         }else {
             i+=1;
         }
-        if (page < i){
-            if (userLists.size()>0){
-                if (userLists.size()>(page+1)*mSize){
-                    List<UserList> lists = userLists.subList(page * mSize, (page * mSize) + mSize);
-                    if (refresh){
-                        mAdapter.getData().clear();
-                    }
-                    mAdapter.addData(lists);
 
-                }else if (userLists.size()>page*mSize){
-                    List<UserList> data =  userLists.subList(page * mSize, userLists.size());
-                    mAdapter.addData(data);
-                }
-                mPage+=1;
-            }
+        if (page > i){
+
+            return;
         }
+        if (userLists.size()>(page+1)*mSize){
+            List<UserList> lists = userLists.subList(page * mSize, (page * mSize) + mSize);
+            if (refresh){
+                mAdapter.getData().clear();
+            }
+            mAdapter.addData(lists);
+
+        }else if (userLists.size()>page*mSize){
+            List<UserList> data =  userLists.subList(page * mSize, userLists.size());
+            mAdapter.addData(data);
+        }
+        mPage+=1;
 
     }
 

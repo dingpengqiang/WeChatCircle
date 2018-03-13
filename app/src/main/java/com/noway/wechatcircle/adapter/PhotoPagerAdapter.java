@@ -43,7 +43,7 @@ public class PhotoPagerAdapter extends PagerAdapter {
                 .load(data.get(position))
                 .placeholder(R.drawable.banner_default)
                 .into(photoView);
-        // Now just add PhotoView to ViewPager and return it
+
         container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         return photoView;

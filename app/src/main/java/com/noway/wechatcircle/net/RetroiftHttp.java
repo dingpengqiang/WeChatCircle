@@ -50,16 +50,12 @@ public class RetroiftHttp {
                 //并设置超时时间
                 .connectTimeout(20, TimeUnit.SECONDS)
                 //连接失败后是否重新连接
-                //.retryOnConnectionFailure(true)
-
-                //.addInterceptor()
+                .retryOnConnectionFailure(false)
 
                 // 对所有请求添加请求头
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-
-//                        Logger.e(Config.TAG, "url: "+chain.request().url() );
 
                         return chain.proceed(chain.request() // originalRequest
                                 .newBuilder()
@@ -92,14 +88,7 @@ public class RetroiftHttp {
             long t2 = System.nanoTime();//收到响应的时间
 
             ResponseBody responseBody = response.peekBody(1024 * 1024);
-            //这里不能直接使用response.body().string()的方式输出日志
-            //因为response.body().string()之后，response中的流会被关闭，程序会报错，我们需要创建出一
-            //个新的response给应用层处理
-//            Logger.e(String.format(Locale.CHINA,"接收响应: [%s] %n返回json: %s \t\n in  %.1fms%n%s",
-//                    response.message()+"\t"+response.code(),
-//                    responseBody.string(),
-//                    (t2 - t1) / 1e6d,
-//                    response.headers()));
+
             Logger.e(String.format(Locale.CHINA, "发送请求: %s on %s%n%s \t\n接收响应: [%s] %n返回json: %s \t\n in  %.1fms%n%s",
                     request.url(),
                     chain.connection(),
